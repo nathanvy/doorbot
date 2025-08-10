@@ -16,3 +16,6 @@ A python IRC bot that runs on a BeagleBone Black and announces the state of the 
 - a switch of some sort (cool kids use two springs soldered to a bit of perfboard)
 
 
+Wire it up as such:
+
+![Circuit diagram](https://raw.githubusercontent.com/nathanvy/doorbot/refs/heads/master/circuit.png "Circuit Diagram")
