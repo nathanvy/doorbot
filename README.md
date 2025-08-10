@@ -19,3 +19,5 @@ A python IRC bot that runs on a BeagleBone Black and announces the state of the 
 Wire it up as such:
 
 ![Circuit diagram](https://raw.githubusercontent.com/nathanvy/doorbot/refs/heads/master/circuit.png "Circuit Diagram")
+
+You can of course implement the circuit in lots of different ways.  A key point to bear in mind is that I used this circuit with these parts because it is what I happened to have on hand.  The goal was to spend zero dollars.
