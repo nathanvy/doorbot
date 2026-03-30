@@ -25,7 +25,6 @@ class DoorBot(irc.bot.SingleServerIRCBot):
 
         self.channel = channel
         self._events = queue.Queue()
-        self._last_msg = None
         self._last_msg_ts = 0.0
 
         GPIO.setup(config.pin, GPIO.IN, pull_up_down=GPIO.PUD_UP)
@@ -52,11 +51,9 @@ class DoorBot(irc.bot.SingleServerIRCBot):
             while True:
                 level, when = self._events.get_nowait()
                 msg = f"Switch {levelmap(level)}"
-                now = time.monotonic()
-                if not (msg == self._last_msg and (now - self._last_msg_ts) < config.dedup_window_sec):
+                if (when - self._last_msg_ts) >= config.dedup_window_sec:
                     self.connection.privmsg(self.channel, msg)
-                    self._last_msg = msg
-                    self._last_msg_ts = now
+                    self._last_msg_ts = when
         except queue.Empty:
             pass
         finally:
